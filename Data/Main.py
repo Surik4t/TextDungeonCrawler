@@ -111,6 +111,8 @@ def forward():
   wait("Going deeper", 2)
   global depth
   depth += 10
+  if depth == 1500:
+    end_of_demo()
   hero.update()
   if "dead" in hero.status:
     game_over()
@@ -172,7 +174,6 @@ def combat():
     print(f"Depth: ", depth)
     print(f"HP: {hero.hp} / {hero.max_hp}\n")
     print(f"{enemy.name} (LvL {enemy.lvl}) is standing before you...")
-    print(f"enemy hp: {enemy.hp}")
     action_input = input(f"You can {actions}\n")
     match action_input:
       case "attack":
@@ -275,7 +276,7 @@ def room():
           cls()
           hero.gold -= cure_cost
           hero.remove_status("poisoned")
-          print("The Keeper hands you a shot glass of gooye liquid.")
+          print("The Keeper hands you a glass of gooye liquid.")
           wait("You drink the potion with disgust")
           input("You feel better.\nPress 'Enter' to continue.")
           room()
@@ -332,6 +333,12 @@ def save():
   print("Not available in Demo")
   wait_for_action()
 
+
+def end_of_demo():
+  cls()
+  print("You've reached 1500m. This is the end of Demo.")
+  print(f"{hero.name} trips over a rock, breaks an ankle and dies from cringe...")
+  game_over()
 
 def quit():
   answer = input("Do you really want to quit? y/n: ").strip().lower()

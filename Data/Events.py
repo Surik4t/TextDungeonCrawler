@@ -30,7 +30,6 @@ class chest():
       possible_drop = ("potion", "antidote", "key", "lockpick")
       items = random.choice(possible_drop)
       self.loot["items"] = items
-    print(self.loot)
 
 
   def check_stats(stat):
